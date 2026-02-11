@@ -1,0 +1,116 @@
+AUTH ROUTES
+
+Register
+POST /auth/register
+
+Request Body:
+{
+"name": "User Name",
+"email": "user@gmail.com
+",
+"password": "123456",
+"role": "seller"
+}
+
+Login
+POST /auth/login
+
+Request Body:
+{
+"email": "user@gmail.com
+",
+"password": "123456"
+}
+
+Response:
+{
+"token": "JWT_TOKEN"
+}
+
+PRODUCT ROUTES
+
+Create Product (Seller Only)
+POST /products
+
+Headers:
+Authorization: Bearer seller_token
+
+Body (form-data):
+name
+description
+price
+stock
+image (file)
+
+Get All Products
+GET /products
+
+Get Single Product
+GET /products/:id
+
+Get My Products (Seller Only)
+GET /products/my-products
+
+Update Product (Seller Only)
+PATCH /products/:id
+
+Body:
+{
+"price": 65000,
+"stock": 10
+}
+
+Delete Product (Seller Only)
+DELETE /products/:id
+
+ORDER ROUTES
+
+Create Order (Customer Only)
+POST /orders
+
+Body:
+{
+"items": [
+{
+"productId": "PRODUCT_ID",
+"quantity": 2
+}
+]
+}
+
+Get My Orders (Customer)
+GET /orders/my-orders
+
+Get All Orders (Admin)
+GET /orders
+
+Update Order Status (Admin)
+PATCH /orders/:id/status
+
+Body:
+{
+"status": "shipped"
+}
+
+Valid Status Values:
+processing
+shipped
+delivered
+cancelled
+
+REPORT ROUTES
+
+Seller Revenue
+GET /reports/seller-revenue
+
+Top Products
+GET /reports/top-products
+
+Monthly Revenue
+GET /reports/monthly-revenue
+
+Admin Dashboard
+GET /reports/admin-dashboard
+
+Low Stock Report
+GET /reports/low-stock
